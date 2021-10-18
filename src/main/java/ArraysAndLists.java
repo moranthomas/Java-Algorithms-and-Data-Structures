@@ -1,18 +1,26 @@
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-
 import java.time.ZoneId;
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
 @Slf4j
-public class LoopsArraysAndIterators {
+public class ArraysAndLists {
 
     // Create a new list of Integers and initialize
     List<Integer> intList = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5));
+
+    @Test
+    public void simpleArraySum() {
+        int sum = 0;
+        for( int x : intList) {
+            sum = sum +x;
+        }
+        System.out.println(sum);
+    }
 
     @Test
     public void printAllAvailableZoneIds() {
@@ -26,19 +34,9 @@ public class LoopsArraysAndIterators {
 
         // Iterate Set Using the Java Stream API
         Stream<String> stream = allZoneIds.stream();
-
-        int[] A = {1,2,3};
-        int N = A.length;
-       /* Set<Integer> set = new HashSet<>();
-        forEach(a:A) {
-
-        }
-        System.out.println(list);
-        System.out.println(sortedList);*/
-
-        //List<String> sortedList = list.stream().sorted().collect(Collectors.toList());
-
         stream.forEach((element) -> { log.info(element); });
+
+        List<Integer> sortedList = intList.stream().sorted().collect(Collectors.toList());
     }
 
     @Test
@@ -65,13 +63,13 @@ public class LoopsArraysAndIterators {
         assert(arraylist.contains("Dravid"));
     }
 
-//    @Test
-//    public void testIntstreamToHashMap() {
-//        Map<Integer, Integer> myMap = new HashMap<>();
-//        myMap = intList.stream()
-//                    .filter(x -> x%2 == 0)
-//                    .collect(Collectors.toMap(x -> x[0], x -> ))
-//    }
+    @Test
+    public void testIntstreamToHashMap() {
+        Map<Integer, Integer> myMap = new HashMap<>();
+        myMap = intList.stream()
+                    .filter(x -> x%2 == 0)
+                    .collect(Collectors.toMap(x -> 0, x -> 1));   // TODO - incomplete
+    }
 
 
     @Test
@@ -151,19 +149,5 @@ public class LoopsArraysAndIterators {
         stream2.forEach(x -> System.out.println(x));
 
     }
-
-    @Test
-    public void simpleArraySum() {
-
-        List<Integer> a = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5));
-
-        int sum = 0;
-        for( int x : a) {
-            sum = sum +x;
-        }
-        System.out.println(sum);
-    }
-
-
 
 }
