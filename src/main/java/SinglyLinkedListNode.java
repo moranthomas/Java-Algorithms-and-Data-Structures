@@ -1,40 +1,7 @@
-import org.junit.Test;
-
-import java.util.*;
-
-public class LinkedLists {
-
-    @Test
-    public void  removeDuplicates() {
-        // Write your code here
-
-        SinglyLinkedListNode llist = new SinglyLinkedListNode(10);
-        llist.push(20);
-        llist.push(13);
-        llist.push(13);
-        llist.push(11);
-        llist.push(11);
-        llist.push(11);
-
-
-        SinglyLinkedListNode modifiedLList = RemoveDuplicates(llist);
-        System.out.println(Arrays.toString(llist.toArray()));
-
-    }
-
-    SinglyLinkedListNode RemoveDuplicates(SinglyLinkedListNode head) {
-        if ( head == null ) return null;
-        SinglyLinkedListNode nextItem = head.next;
-        while ( nextItem != null && head.data == nextItem.data ) {
-            nextItem = nextItem.next;
-        }
-        head.next = RemoveDuplicates( nextItem );
-        return head;
-    }
-
-
-
-}
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 class SinglyLinkedListNode implements List {
 
@@ -73,6 +40,16 @@ class SinglyLinkedListNode implements List {
             temp = temp.next;
         }
         System.out.println();
+    }
+
+    SinglyLinkedListNode RemoveDuplicates(SinglyLinkedListNode head) {
+        if ( head == null ) return null;
+        SinglyLinkedListNode nextItem = head.next;
+        while ( nextItem != null && head.data == nextItem.data ) {
+            nextItem = nextItem.next;
+        }
+        head.next = RemoveDuplicates( nextItem );
+        return head;
     }
 
     @Override
@@ -190,3 +167,4 @@ class SinglyLinkedListNode implements List {
         return new Object[0];
     }
 }
+
