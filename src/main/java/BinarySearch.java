@@ -1,16 +1,19 @@
 public class BinarySearch {
 
-    public int runBinarySearchIteratively(int[] sortedArray, int key, int low, int high) {
+    public int runBinarySearchIteratively(int[] sortedArray, int searchKey, int low, int high) {
 
         int index = Integer.MAX_VALUE;
 
         while (low <= high) {
+
+            // important to do it this way for very large arrays.
             int mid = low  + ((high - low) / 2);
-            if (sortedArray[mid] < key) {
+
+            if (sortedArray[mid] < searchKey) {
                 low = mid + 1;
-            } else if (sortedArray[mid] > key) {
+            } else if (sortedArray[mid] > searchKey) {
                 high = mid - 1;
-            } else if (sortedArray[mid] == key) {
+            } else if (sortedArray[mid] == searchKey) {
                 index = mid;
                 break;
             }
@@ -18,8 +21,9 @@ public class BinarySearch {
         return index;
     }
 
-    public int runBinarySearchRecursively(int[] sortedArray, int key, int low, int high) {
+    public int runBinarySearchRecursively(int[] sortedArray, int searchKey, int low, int high) {
 
+        // important to do it this way for very large arrays.
         int middle = low  + ((high - low) / 2);
 
         if (high < low) {
@@ -27,12 +31,14 @@ public class BinarySearch {
         }
 
         // NOTE - no while loop required.
-        if (key == sortedArray[middle]) {
+        if (searchKey == sortedArray[middle]) {
             return middle;
-        } else if (key < sortedArray[middle]) {
-            return runBinarySearchRecursively(sortedArray, key, low, middle - 1);
+        } else if (searchKey < sortedArray[middle]) {
+            // search bottom half
+            return runBinarySearchRecursively(sortedArray, searchKey, low, middle - 1);
         } else {
-            return runBinarySearchRecursively(sortedArray, key, middle + 1, high);
+            // search top half
+            return runBinarySearchRecursively(sortedArray, searchKey, middle + 1, high);
         }
     }
 

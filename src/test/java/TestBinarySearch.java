@@ -18,7 +18,7 @@ public class TestBinarySearch {
     public void testBSIteratively() {
         int index = binarySearch.runBinarySearchIteratively(array, 4, 0, array.length-1);
         if(index > 0) {
-            log.info("key found at position: " + index);
+            log.info("key found using ITERATION at position: " + index);
         }
         else {
             log.info("key not found :( ");
