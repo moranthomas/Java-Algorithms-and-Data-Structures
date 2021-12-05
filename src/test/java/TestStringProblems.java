@@ -7,7 +7,7 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Strings {
+public class TestStringProblems {
 
     @Test
     public void testReversingAString() {

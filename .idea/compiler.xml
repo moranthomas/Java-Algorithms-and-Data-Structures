@@ -9,5 +9,8 @@
         <module name="Java-Algorithms-and-Data-Structures" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Java-Algorithms-and-Data-Structures" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

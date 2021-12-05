@@ -36,6 +36,8 @@ public class ArraysAndLists {
         Stream<String> stream = allZoneIds.stream();
         stream.forEach((element) -> { log.info(element); });
 
+
+
         List<Integer> sortedList = intList.stream().sorted().collect(Collectors.toList());
     }
 
