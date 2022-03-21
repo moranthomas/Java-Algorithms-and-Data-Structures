@@ -9,11 +9,13 @@ import java.util.Scanner;
 public class TestHashTable {
 
     @Test
-    public void testHashTable(String[] args){
+    public void testHashTable(){
 
         HashTable table = new HashTable(2);
         String key,value;
-        while (true) {
+
+        /** This version requires access to the console.....
+        // while (true) {
             System.out.println("\nMenu:");
             System.out.println("   1. test put(key,value)");
             System.out.println("   2. test get(key)");
@@ -23,31 +25,37 @@ public class TestHashTable {
             System.out.println("   6. EXIT");
             System.out.print("Enter your command:  ");
 
-            Scanner scanner = new Scanner(System.in);
+            /*Scanner scanner = new Scanner(System.in);
             int choice = Integer.parseInt(scanner.nextLine());
+            */
+
+            //Hardcode for Unit Testing Purposes - avoid needing access to console in
+            int choice = 1;
+            key = "Jude";
+            value = "23 The Forum, Inglewood, Los Angeles";
 
             switch ( choice) {
                 case 1:
-                    System.out.print("\n   Key = ");
-                    key = scanner.nextLine();
-                    System.out.print("   Value = ");
-                    value = scanner.nextLine();
+                    System.out.print("\n   Key = " + key);
+                    //key = scanner.nextLine();
+                    System.out.print("   Value = " + value);
+                    //value = scanner.nextLine();
                     table.put(key,value);
                     break;
                 case 2:
                     System.out.print("\n   Key = ");
-                    key = scanner.nextLine();
+                    //key = scanner.nextLine();
                     System.out.println("   Value is " + table.get(key));
                     break;
                 case 3:
                     System.out.print("\n   Key = ");
-                    key = scanner.nextLine();
+                    //key = scanner.nextLine();
                     System.out.println("   containsKey(" + key + ") is "
                             + table.containsKey(key));
                     break;
                 case 4:
                     System.out.print("\n   Key = ");
-                    key = scanner.nextLine();
+                    //key = scanner.nextLine();
                     table.remove(key);
                     break;
                 case 5:
@@ -61,6 +69,6 @@ public class TestHashTable {
             }
             System.out.println("\nHash table size is " + table.size());
         }
-    }
+    //}
 
 } // end class TestHashTable
