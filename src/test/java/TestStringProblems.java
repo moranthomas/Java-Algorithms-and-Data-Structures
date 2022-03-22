@@ -68,7 +68,9 @@ public class TestStringProblems {
     public void checkAnagram() {
         String a = "cat";
         String b = "abacats";
-        log.info(strings.checkForAnagrams(a, b));
+        String c = "tac";
+        log.info("Are these anagrams ? : " + String.valueOf(strings.checkForAnagrams(a, b)));
+        log.info("Are these anagrams ? : " + String.valueOf(strings.checkForAnagrams(a, c)));
     }
 
 

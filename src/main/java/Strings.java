@@ -63,44 +63,38 @@ public class Strings {
     }
 
 
-    /** CHECK STRINGS FOR ANAGRAMS */
-    public String checkForAnagrams(String a, String b) {
+    /** 4 - CHECK STRINGS FOR ANAGRAMS */
+    public boolean checkForAnagrams(String a, String b) {
 
-        // Write your code here
-        int minNoOfDeletions = 0;
-
-        // a.substring(b) (in any order but same length and frequency ) must be non null
-        int[] a_frequencies = new int [26];
-        int[] b_frequencies = new int [26];
-
-        for (int i =0; i< a.length(); i++) {
-            char currenChar = a.charAt(i);
-            int charToInt = (int)currenChar;
-            int position = charToInt - (int)'a';
-            a_frequencies[position]++;
+        //need to be same lengths
+        if(a.length() != b.length() ) {
+            return false;
         }
 
-        for (int i =0; i< b.length(); i++) {
-            char currenChar = b.charAt(i);
-            int charToInt = (int)currenChar;
-            int position = charToInt - (int)'a';
-            b_frequencies[position]++;
+        a = a.toLowerCase();
+        b = b.toLowerCase();
+
+        int[] char_frequencies = new int[26];
+
+        // loop through a and increment the frequencies of the chars in it from start to finish
+        for(int i=0; i<a.length(); i++) {
+            char currentChar = a.charAt(i);
+            int index = currentChar - 'a';  //convert char to ASCII number to be used as index in array
+            char_frequencies[index]++;
+        }
+        //loop through b and increment the frequencies of the chars in it from finish to start
+        for(int i=0; i<b.length(); i++) {
+            char currentChar = b.charAt(i);
+            int index = currentChar - 'a';  //convert char to ASCII number to be used as index in array
+            char_frequencies[index]--;
         }
 
-        for (int i=0; i < 26; i++) {
-            int diff = Math.abs(a_frequencies[i] - b_frequencies[i] );
-            minNoOfDeletions += diff;
+        // if these two match up exactly then we know we have an anagram
+        for(int i=0; i<26; i++) {
+            if(char_frequencies[i]!=0) return false;
         }
 
-        System.out.println(minNoOfDeletions);
-
-        if(minNoOfDeletions == 0) {
-           return "isAnagram";
-        }
-        else {
-            return "isNOTAnagram";
-        }
-
+        return true;
     }
 
 
