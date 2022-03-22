@@ -25,7 +25,7 @@ class TestBinarySearchTree {
 
     @Test
     public void testTreeContainsValue() {
-        log.info("Does tree contain the value? " + bst.contains(bst.root, 4));
+        log.info("Does tree contain the value 4 ? " + bst.contains(bst.root, 4));
     }
 
 }

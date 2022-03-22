@@ -1,5 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -149,6 +151,36 @@ public class Strings {
         }
 
        return commonSubstring;
+    }
+
+
+    String checkSubstringsUsingSortedTreeSet(String str, int k) {
+        SortedSet<String> sets=new TreeSet<String>();
+        for(int i=0; i<=str.length()-k; i++){
+            sets.add(str.substring(i, i+k));
+        }
+        System.out.println(sets.first());
+        System.out.println(sets.last());
+
+        return sets.first();
+    }
+
+    String checkSubstringsUsingInlineVariables(String str, int k) {
+        String max=str.substring(0,k);
+        String min=str.substring(0,k);
+
+        for(int i=0; i+k<=str.length(); i++){
+
+            String substring = str.substring(i, i + k);
+
+            if(substring.compareTo(min)<0) min = substring;
+            if(substring.compareTo(max)>0) max = substring;
+        }
+
+        System.out.println(min);
+        System.out.println(max);
+
+        return max;
     }
 
 

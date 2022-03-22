@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 @Slf4j
 public class TestArraysAndLists {
 
-    List<Integer> intList;
+    static List<Integer> intList;
 
     @BeforeAll
-    public void init() {
+    public static void init() {
         // Create a new list of Integers and initialize
         intList = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5));
     }
@@ -43,7 +43,7 @@ public class TestArraysAndLists {
         System.out.printf("Missing number in array %s is %d ", Arrays.toString(iArray), missing);
     }
 
-    @org.junit.Test
+    @Test
     public void simpleArraySum() {
         int sum = 0;
         for( int x : intList) {
@@ -52,7 +52,7 @@ public class TestArraysAndLists {
         System.out.println(sum);
     }
 
-    @org.junit.Test
+    @Test
     public void printAllAvailableZoneIds() {
 
         Set<String> allZoneIds = ZoneId.getAvailableZoneIds();
@@ -61,17 +61,14 @@ public class TestArraysAndLists {
         for(String str : allZoneIds) {
             log.info(str);
         }
-
         // Iterate Set Using the Java Stream API
         Stream<String> stream = allZoneIds.stream();
         stream.forEach((element) -> { log.info(element); });
 
-
-
         List<Integer> sortedList = intList.stream().sorted().collect(Collectors.toList());
     }
 
-    @org.junit.Test
+    @Test
     public void iteratingAList() {
         // Iterating a list using an Iterator
         List<String> arraylist = new ArrayList<>();
@@ -95,16 +92,16 @@ public class TestArraysAndLists {
         assert(arraylist.contains("Dravid"));
     }
 
-    @org.junit.Test
+    @Test
     public void testIntstreamToHashMap() {
-        Map myMap = (Map) new HashMap();
-        myMap = intList.stream()
+        HashMap myMap = new HashMap();
+        myMap = (HashMap) intList.stream()
                 .filter(x -> x%2 == 0)
                 .collect(Collectors.toMap(x -> 0, x -> 1));   // TODO - incomplete
     }
 
 
-    @org.junit.Test
+    @Test
     public void testPairedSocksInList() {
 
         List<Integer> intList = new ArrayList<Integer>(Arrays.asList(10, 20, 20, 10, 10, 30, 50, 10, 20));
@@ -133,7 +130,7 @@ public class TestArraysAndLists {
     }
 
 
-    @org.junit.Test
+    @Test
     public void testIntStream() {
 
         // Create a new list of Integers and initialize
@@ -167,7 +164,7 @@ public class TestArraysAndLists {
         //  intStream2.forEach(x -> System.out.println(x));
     }
 
-    @org.junit.Test
+    @Test
     public void testStringStreamFromArray() {
 
         String[] array = {"a", "b", "c", "d", "e"};

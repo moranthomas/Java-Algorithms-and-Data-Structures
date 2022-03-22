@@ -28,7 +28,6 @@ public class BinarySearchTree {
         if (current == null) {
             return new Node(value);
         }
-
         if (value < current.data) {
             // go left
             current.left = insertRecursive(current.left, value);
@@ -36,7 +35,6 @@ public class BinarySearchTree {
             // go right
             current.right = insertRecursive(current.right, value);
         }
-
         return current;
     }
 

@@ -1,9 +1,9 @@
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.SortedSet;
-import java.util.TreeSet;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 public class TestStringProblems {
@@ -20,6 +20,14 @@ public class TestStringProblems {
         //The Traditional for Loop (in place)
         String inputStr = "abracadabra";
         log.info("Reversed String (Iteratively) = " + strings.reverseString(inputStr));
+
+        String reversed = strings.reverseString("cat");
+        String reversedNull = strings.reverseString(null);
+        String reversedEmpty = strings.reverseString(StringUtils.EMPTY);
+
+        assertEquals("tac", reversed);
+        assertEquals(null, reversedNull);
+        assertEquals(StringUtils.EMPTY, reversedEmpty);
     }
 
     @Test
@@ -71,34 +79,10 @@ public class TestStringProblems {
         String str = "welcometojava";
         int k = 3;
 
-        solution1UsingSortedTreeSet(str, k);      // Using Sorted Treeset
-        solution2UsingInlineVariables(str, k);      // Using inline variables
+        strings.checkSubstringsUsingSortedTreeSet(str, k);      // Using Sorted Treeset
+        strings.checkSubstringsUsingInlineVariables(str, k);      // Using inline variables
 
     }
 
-    void solution1UsingSortedTreeSet(String str, int k) {
-        SortedSet<String> sets=new TreeSet<String>();
-        for(int i=0; i<=str.length()-k; i++){
-            sets.add(str.substring(i, i+k));
-        }
-        System.out.println(sets.first());
-        System.out.println(sets.last());
-    }
-
-    void solution2UsingInlineVariables(String str, int k) {
-        String max=str.substring(0,k);
-        String min=str.substring(0,k);
-
-        for(int i=0; i+k<=str.length(); i++){
-
-            String substring = str.substring(i, i + k);
-
-            if(substring.compareTo(min)<0) min = substring;
-            if(substring.compareTo(max)>0) max = substring;
-        }
-
-        System.out.println(min);
-        System.out.println(max);
-    }
 
 }
