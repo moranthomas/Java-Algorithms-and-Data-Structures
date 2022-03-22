@@ -1,16 +1,32 @@
-import org.junit.Test;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class TestStringProblems {
 
+    static Strings strings;
+
+    @BeforeAll
+    public static void setUp() {
+         strings = new Strings();   // not working ?
+    }
+
     @Test
-    public void testReversingAString() {
+    public void testReversingWordIteratively() {
+        //The Traditional for Loop (in place)
+        String inputStr = "abracadabra";
+        log.info("Reversed String (Iteratively) = " + strings.reverseString(inputStr));
+    }
+
+
+    @Test
+    public void testReversingASentence() {
 
         final String WHITESPACE = " ";
         final String INPUTSTRING = "The brown fox jumped over the lazy dog";
@@ -32,7 +48,7 @@ public class TestStringProblems {
         reversed = reversedString.toString();
 
 
-        // METHOD 2 - Do the same as above but using Java 8:
+        // METHOD 2 - Use Stringbuilder same as above but incorporating Java 8 streams and lambas:
         final Pattern PATTERN = Pattern.compile(" +");
         reversed = PATTERN.splitAsStream(INPUTSTRING)
                 .map(w -> new StringBuilder(w).reverse())
@@ -41,7 +57,7 @@ public class TestStringProblems {
         System.out.println("The reversed words in the same string order is : " + reversed);
 
 
-        // METHOD 3 - Reverse the letters of each word and the words themselves
+        // METHOD 3 - Reverse the letters of each word and the words themselves (Doesn't reverse the Sentence)
         StringBuilder revStr =  new StringBuilder(INPUTSTRING).reverse();   // Use the built-in StringBuilder.reverse() method
         System.out.println("The reversed words and the words themselves reversed is : " + revStr);
 
@@ -125,49 +141,27 @@ public class TestStringProblems {
     }
 
 
+
+
     @Test
-    public String compareTwoStringsBrute(String s1, String s2) {
-        // Given two strings, determine if they share a common substring. A substring may be as small as one character.
-        String commonSubstring = "NO";
+    public void compareTwoSubStringsBrute() {
+        String s1 = "I am a very lazy wicked man";
+        String s2 = "wicked";
+        String s3 = "x";
 
-        if(s1.contains(s2)) {
-            commonSubstring = "YES";
-        }
-
-        int s1Len = s1.length();
-        int s2Len = s2.length();
-
-        int shortestStringLength = s1Len > s2Len ? s2Len : s1Len;
-
-        // Loop through each character in s1 and see if
-        for(int i =0; i < shortestStringLength; i++) {
-            if(s1.contains(s2.substring(i, i+1)) ) {
-                commonSubstring = "YES";
-            }
-        }
-
-        return commonSubstring;
+        log.info(strings.compareTwoSubStringsBrute(s1, s2));
+        log.info(strings.compareTwoSubStringsBrute(s1, s3));
     }
 
     @Test
-    public String compareTwoStringsEfficient(String s1, String s2) {
-        // Given two strings, determine if they share a common substring. A substring may be as small as one character.
-        String commonSubstring = "NO";
+    public void compareTwoSubStringsEfficient() {
 
-        Set<Character> s1Set = new HashSet<Character>();
-        Set<Character> s2Set = new HashSet<Character>();
+        String s1 = "I am a very lazy wicked man";
+        String s2 = "wicked";
+        String s3 = "x";
 
-        for(char c : s1.toCharArray()) { s1Set.add(c); }
-        for(char c : s2.toCharArray()) { s2Set.add(c); }
-
-        // store intersection of both in s1Set
-        s1Set.retainAll(s2Set);
-
-        if(!s1Set.isEmpty()) {
-            commonSubstring = "YES";
-        }
-
-        return commonSubstring;
+        log.info(strings.compareTwoSubStringsEfficient(s1, s2));
+        log.info(strings.compareTwoSubStringsEfficient(s1, s3));
 
     }
 }
