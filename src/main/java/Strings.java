@@ -1,5 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Strings {
 
@@ -17,6 +19,88 @@ public class Strings {
         }
         return reversed;
     }
+
+    /** 2 - REVERSE A SENTENCE FULLY */
+    public String reverseSentence(String INPUTSTRING) {
+
+        final String WHITESPACE = " ";
+        String reversed;
+
+        // METHOD 1 - Use StringBuilder to reverse only the words first
+        String[] words = INPUTSTRING.split(WHITESPACE);
+        StringBuilder reversedString = new StringBuilder();
+
+        for (String word : words) {
+            StringBuilder reverseWord = new StringBuilder();
+
+            for (int i = word.length() - 1; i >= 0; i--) {
+                reverseWord.append(word.charAt(i));
+            }
+
+            reversedString.append(reverseWord).append(WHITESPACE);
+        }
+        reversed = reversedString.toString();
+
+
+        // METHOD 2 - Use Stringbuilder same as above but incorporating Java 8 streams and lambas:
+        final Pattern PATTERN = Pattern.compile(" +");
+        reversed = PATTERN.splitAsStream(INPUTSTRING)
+                .map(w -> new StringBuilder(w).reverse())
+                .collect(Collectors.joining(" "));
+
+        System.out.println("The reversed words in the same string order is : " + reversed);
+
+        return reversed;
+    }
+
+    /** 3 - REVERSE EACH OF THE WORDS IN A SENTENCE (BUT NOT THE SENTENCE) */
+    public String reverseSentenceAndWords(String INPUTSTRING) {
+        // Reverse the letters of each word and the words themselves (Doesn't reverse the Sentence)
+        StringBuilder revStr = new StringBuilder(INPUTSTRING).reverse();   // Use the built-in StringBuilder.reverse() method
+        return revStr.toString();
+    }
+
+
+    /** CHECK STRINGS FOR ANAGRAMS */
+    public String checkForAnagrams(String a, String b) {
+
+        // Write your code here
+        int minNoOfDeletions = 0;
+
+        // a.substring(b) (in any order but same length and frequency ) must be non null
+        int[] a_frequencies = new int [26];
+        int[] b_frequencies = new int [26];
+
+        for (int i =0; i< a.length(); i++) {
+            char currenChar = a.charAt(i);
+            int charToInt = (int)currenChar;
+            int position = charToInt - (int)'a';
+            a_frequencies[position]++;
+        }
+
+        for (int i =0; i< b.length(); i++) {
+            char currenChar = b.charAt(i);
+            int charToInt = (int)currenChar;
+            int position = charToInt - (int)'a';
+            b_frequencies[position]++;
+        }
+
+        for (int i=0; i < 26; i++) {
+            int diff = Math.abs(a_frequencies[i] - b_frequencies[i] );
+            minNoOfDeletions += diff;
+        }
+
+        System.out.println(minNoOfDeletions);
+
+        if(minNoOfDeletions == 0) {
+           return "isAnagram";
+        }
+        else {
+            return "isNOTAnagram";
+        }
+
+    }
+
 
 
     /** COMPARING SUBSTRINGS */
