@@ -14,6 +14,26 @@ public class BinarySearchTree {
         }
     }
 
+    // constructor
+    public BinarySearchTree() {
+        root = null;
+    }
+
+    public Node getRoot() {
+        return root;
+    }
+
+    /** Function to check if binary tree is empty or not. Time Complexity of this solution is constant O(1)
+     * for best, average and worst case. @return true if binary search tree is empty */
+    public boolean isEmpty() {
+        return null == root;
+    }
+
+    /** * Java function to clear the binary search tree. Time complexity of this method is O(1) */
+    public void clear() {
+        root = null;
+    }
+
     // sometimes also called 'visit()'
     private void printValue(int value) {
         System.out.print(" " + value);

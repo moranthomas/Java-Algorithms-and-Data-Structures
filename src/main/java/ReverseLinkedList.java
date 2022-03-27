@@ -49,8 +49,8 @@ public class ReverseLinkedList<T> {
             return sb.toString();
     }
 
-        /** * Reverse linked list using 3 pointers approach in O(n) time It basically creates a new
-         list by reversing direction,and subsequently insert the element at the start of the list. */
+        /** Reverse linked list using 3 pointers approach in O(n) time It basically creates a new
+         list by reversing direction and iteratively inserting the last element at the start of the list. */
 
         public void reverseIteratively () {
             Node current = head;
@@ -70,7 +70,7 @@ public class ReverseLinkedList<T> {
             head.next = previous;
         }
 
-        /** Reverse a singly linked list using recursion. In recursion Stack is * used to store data.
+        /** Reverse a singly linked list using recursion. In recursion Stack is used to store data.
          Traverse linked list till we find the tail, that would be new head for reversed linked list. */
         private Node reverseRecursively(Node node) {
             Node newHead; //base case - tail of original linked list
@@ -85,8 +85,4 @@ public class ReverseLinkedList<T> {
             return newHead;
         }
 
-        public void reverseRecursively ()
-        {
-            head = reverseRecursively(head);
-        }
 }
